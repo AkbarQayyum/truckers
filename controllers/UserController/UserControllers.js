@@ -1,7 +1,7 @@
 const Users = require("../../models/UserModal");
 const jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
-var transporter = await nodemailer.createTransport({
+var transporter =  nodemailer.createTransport({
   service: "gmail",
   pool: true,
   port: 587,
