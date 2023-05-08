@@ -63,6 +63,7 @@ const VerifyEmails = async (req, res) => {
       res.send('<h1>Congratulation Your email has been verifies you can now login into application</h1>');
     }
   } catch (error) {
+    console.log(error)
     res.send({ Error: error });
   }
 };
