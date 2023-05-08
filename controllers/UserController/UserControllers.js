@@ -1,6 +1,20 @@
 const Users = require("../../models/UserModal");
 const jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
+var transporter = await nodemailer.createTransport({
+  service: "gmail",
+  pool: true,
+  port: 587,
+  secure: false, // true for 465, false for other ports
+  tls: {
+    // do not fail on invalid certs
+    rejectUnauthorized: false,
+  },
+  auth: {
+    user: "zumzumtransporters@gmail.com",
+    pass: "swulemljarlyoyjt",
+  },
+});
 
 const registerUsers = async (req, res) => {
   try {
@@ -10,18 +24,9 @@ const registerUsers = async (req, res) => {
     const request = await new Users(obj);
     const data = await request.save();
     if (data) {
-      var transporter = await nodemailer.createTransport({
-        service: "gmail",
-        port: 465,
-      
-        auth: {
-          user: "zumzumtransporters@gmail.com",
-          pass: "swulemljarlyoyjt",
-        },
-      });
       var mailOptions = {
         from: "zumzumtransporters@gmail.com",
-        to: data?.email,
+        to: "akbarqayyum0@gmail.com",
         subject: "Email Verification",
         html: `<div style={text-align:center;}><h3>Welcome To Zum Zum Transport Services</h3><h5>Please Click Button To Verify Your Email</h5><a href='http://localhost:4433/users/auth/verifyemail/${data?._id}' target={_blank}><button>Verify Email</button></a></div>`,
       };
