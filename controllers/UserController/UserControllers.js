@@ -4,6 +4,7 @@ var nodemailer = require("nodemailer");
 
 var transporter = nodemailer.createTransport({
   service: "gmail",
+  port: 465,
   auth: {
     user: "zumzumtransporters@gmail.com",
     pass: "swulemljarlyoyjt",
@@ -60,10 +61,12 @@ const VerifyEmails = async (req, res) => {
       }
     );
     if (data) {
-      res.send('<h1>Congratulation Your email has been verifies you can now login into application</h1>');
+      res.send(
+        "<h1>Congratulation Your email has been verifies you can now login into application</h1>"
+      );
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.send({ Error: error });
   }
 };
