@@ -1,17 +1,69 @@
 const Users = require("../../models/UserModal");
 const jwt = require("jsonwebtoken");
+var nodemailer = require("nodemailer");
+
+var transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "zumzumtransporters@gmail.com",
+    pass: "swulemljarlyoyjt",
+  },
+});
 
 const registerUsers = async (req, res) => {
   try {
-    const request = await new Users(req.body);
+    console.log(req.body);
+    const obj = { ...req.body, isEmailVerified: false };
+    console.log(obj);
+    const request = await new Users(obj);
     const data = await request.save();
-    res.send({ message: "User successfully created", isSuccess: true });
+    if (data) {
+      var mailOptions = {
+        from: "zumzumtransporters@gmail.com",
+        to: data?.email,
+        subject: "Email Verification",
+        html: `<div style={text-align:center;}><h3>Welcome To Zum Zum Transport Services</h3><h5>Please Click Button To Verify Your Email</h5><a href='http://localhost:4433/users/auth/verifyemail/${data?._id}' target={_blank}><button>Verify Email</button></a></div>`,
+      };
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Email sent: " + info.response);
+        }
+      });
+    }
+
+    res.send({
+      message: "User successfully created and Email Verification Link send.",
+      isSuccess: true,
+    });
   } catch (error) {
     res.send({
       Error: error,
       isSuccess: false,
       message: "something went wrong please try again.!",
     });
+  }
+};
+
+const VerifyEmails = async (req, res) => {
+  try {
+    // const data = await Users.find();
+    console.log(req.body);
+    console.log(req.params?.id);
+    let data = await Users.updateOne(
+      { _id: req.params.id },
+      {
+        $set: {
+          isEmailVerified: true,
+        },
+      }
+    );
+    if (data) {
+      res.send('<h1>Congratulation Your email has been verifies you can now login into application</h1>');
+    }
+  } catch (error) {
+    res.send({ Error: error });
   }
 };
 
@@ -89,4 +141,5 @@ module.exports = {
   getuserById,
   removeUser,
   updateUser,
+  VerifyEmails,
 };
