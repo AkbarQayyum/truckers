@@ -31,7 +31,7 @@ const registerUsers = async (req, res) => {
        });
       var mailOptions = {
         from: "zumzumtransporters@gmail.com",
-        to: "akbarqayyum0@gmail.com",
+        to: data?.email,
         subject: "Email Verification",
         html: `<div style={text-align:center;}><h3>Welcome To Zum Zum Transport Services</h3><h5>Please Click Button To Verify Your Email</h5><a href='http://localhost:4433/users/auth/verifyemail/${data?._id}' target={_blank}><button>Verify Email</button></a></div>`,
       };
