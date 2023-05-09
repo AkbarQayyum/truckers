@@ -1,15 +1,11 @@
 const Users = require("../../models/UserModal");
 const jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
-var transporter =  nodemailer.createTransport({
+var transporter = nodemailer.createTransport({
   service: "gmail",
-  pool: true,
-  port: 587,
-  secure: false, // true for 465, false for other ports
-  tls: {
-    // do not fail on invalid certs
-    rejectUnauthorized: false,
-  },
+  port: 465,
+  host: "smtp.gmail.com",
+  secure: true,
   auth: {
     user: "zumzumtransporters@gmail.com",
     pass: "swulemljarlyoyjt",
@@ -23,7 +19,16 @@ const registerUsers = async (req, res) => {
     console.log(obj);
     const request = await new Users(obj);
     const data = await request.save();
-    if (data) {
+    
+       await transporter.verify(function (error, success) {
+         if (error) {
+           console.log(error);
+        
+         } else {
+           console.log("Server is ready to take our messages");
+         
+         }
+       });
       var mailOptions = {
         from: "zumzumtransporters@gmail.com",
         to: "akbarqayyum0@gmail.com",
@@ -37,7 +42,7 @@ const registerUsers = async (req, res) => {
           console.log("Email sent: " + info.response);
         }
       });
-    }
+  
 
     res.send({
       message: "User successfully created and Email Verification Link send.",
