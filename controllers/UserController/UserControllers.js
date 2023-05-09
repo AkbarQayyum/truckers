@@ -4,8 +4,7 @@ var nodemailer = require("nodemailer");
 var transporter = nodemailer.createTransport({
   service: "gmail",
   port: 465,
-  host: "smtp.gmail.com",
-  secure: true,
+
   auth: {
     user: "zumzumtransporters@gmail.com",
     pass: "swulemljarlyoyjt",
@@ -19,30 +18,20 @@ const registerUsers = async (req, res) => {
     console.log(obj);
     const request = await new Users(obj);
     const data = await request.save();
-    
-       await transporter.verify(function (error, success) {
-         if (error) {
-           console.log(error);
-        
-         } else {
-           console.log("Server is ready to take our messages");
-         
-         }
-       });
-      var mailOptions = {
-        from: "zumzumtransporters@gmail.com",
-        to: data?.email,
-        subject: "Email Verification",
-        html: `<div style={text-align:center;}><h3>Welcome To Zum Zum Transport Services</h3><h5>Please Click Button To Verify Your Email</h5><a href='http://localhost:4433/users/auth/verifyemail/${data?._id}' target={_blank}><button>Verify Email</button></a></div>`,
-      };
-      await transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Email sent: " + info.response);
-        }
-      });
-  
+
+    var mailOptions = {
+      from: "zumzumtransporters@gmail.com",
+      to: data?.email,
+      subject: "Email Verification",
+      html: `<div style={text-align:center;}><h3>Welcome To Zum Zum Transport Services</h3><h5>Please Click Button To Verify Your Email</h5><a href='http://localhost:4433/users/auth/verifyemail/${data?._id}' target={_blank}><button>Verify Email</button></a></div>`,
+    };
+    await transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
 
     res.send({
       message: "User successfully created and Email Verification Link send.",
@@ -94,7 +83,7 @@ const getAllUsers = async (req, res) => {
 const getuserById = async (req, res) => {
   try {
     let data = await Users.findOne({
-      email: req.body.email,
+      email: req.body.username,
       password: req.body.password,
     });
     console.log(data);
