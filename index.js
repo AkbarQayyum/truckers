@@ -8,10 +8,28 @@ app.use(express.json());
 app.use(bodyParser.json());
 const dotenv = require("dotenv");
 const usersRouters = require("./routes/Auth_routes");
+const builtyroutes = require("./routes/Builty_routes");
 
 dotenv.config();
 require("./config/mongodb_connection");
+
+
+
 app.use("/users/auth/", usersRouters);
+app.use("/api/builty", builtyroutes);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const PORT = process.env.PORT || 4433;
 
