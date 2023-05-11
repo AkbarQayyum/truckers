@@ -9,6 +9,13 @@ app.use(bodyParser.json());
 const dotenv = require("dotenv");
 const usersRouters = require("./routes/Auth_routes");
 const builtyroutes = require("./routes/Builty_routes");
+const laborroutes = require("./routes/LaborRoutes");
+const laborbooking = require("./routes/LaborBooking");
+const rikshawBooking = require("./routes/RikshawBooing");
+const TruckBooking = require("./routes/TruckBooking");
+const ReviewRoutes = require("./routes/ReviewRoutes");
+const SellRoutes = require("./routes/SellVehicleRoutes");
+const GeneralBookingRoute = require("./routes/GeneralBookingRoute");
 
 dotenv.config();
 require("./config/mongodb_connection");
@@ -17,6 +24,13 @@ require("./config/mongodb_connection");
 
 app.use("/users/auth/", usersRouters);
 app.use("/api/builty", builtyroutes);
+app.use("/api/labor", laborroutes);
+app.use("/api/labor", laborbooking);
+app.use("/api/rikshaw", rikshawBooking);
+app.use("/api/truck", TruckBooking);
+app.use("/api/reviews", ReviewRoutes);
+app.use("/api/sell", SellRoutes);
+app.use("/api/bookings", GeneralBookingRoute);
 
 
 

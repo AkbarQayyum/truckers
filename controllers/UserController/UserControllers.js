@@ -1,3 +1,4 @@
+const { response } = require("express");
 const Users = require("../../models/UserModal");
 const jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
@@ -29,14 +30,16 @@ const registerUsers = async (req, res) => {
       if (error) {
         console.log(error);
       } else {
-        console.log("Email sent: " + info.response);
+        res.send({
+          message:
+            "User successfully created and Email Verification Link send.",
+          isSuccess: true,
+        });
       }
     });
 
-    res.send({
-      message: "User successfully created and Email Verification Link send.",
-      isSuccess: true,
-    });
+    await res.send({message:'User Register Successfully.',isSuccess:true})
+   
   } catch (error) {
     res.send({
       Error: error,
