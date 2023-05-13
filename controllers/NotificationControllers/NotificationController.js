@@ -10,7 +10,7 @@ const GetNotification = async (req, res) => {
 };
 const GetUserNotifications = async (req, res) => {
   try {
-    const data = await NotificationModal.findById(req.body?.id);
+    const data = await NotificationModal.find({ sentto: req.body?.id });
     let unread = await data.filter((f) => f.isRead == false);
     let read = await data.filter((f) => f.isRead == true);
     res.send({
