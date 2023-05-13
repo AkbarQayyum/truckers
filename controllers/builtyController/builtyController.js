@@ -1,5 +1,5 @@
 const BuiltyModal = require("../../models/Builty/BuiltyModal");
-
+const notiSchema = require("../../models/notifications/Modal");
 const AddBuilty = async (req, res) => {
   try {
     console.log(req.body);
@@ -51,6 +51,7 @@ const getBultyById = async (req, res) => {
 
 const updateBuilty = async (req, res) => {
   try {
+    console.log(req.body);
     let data = await BuiltyModal.updateOne(
       { _id: req.body.id },
       {
@@ -59,6 +60,16 @@ const updateBuilty = async (req, res) => {
         },
       }
     );
+    // console.log(data);
+    const obj = {
+      text: `Your Builty Request from ${req.body.date} Has Been Approved.`,
+      sentto: req.body.bookerid,
+      isRead: false,
+    };
+    const request = await new notiSchema(obj);
+    const status = await request.save();
+    console.log(status);
+    // console.log(data);
     res.send("builty record updated");
   } catch (error) {
     res.send({ error: error });

@@ -16,6 +16,7 @@ const TruckBooking = require("./routes/TruckBooking");
 const ReviewRoutes = require("./routes/ReviewRoutes");
 const SellRoutes = require("./routes/SellVehicleRoutes");
 const GeneralBookingRoute = require("./routes/GeneralBookingRoute");
+const notifications = require("./routes/NotificationRoutes");
 
 dotenv.config();
 require("./config/mongodb_connection");
@@ -31,6 +32,7 @@ app.use("/api/truck", TruckBooking);
 app.use("/api/reviews", ReviewRoutes);
 app.use("/api/sell", SellRoutes);
 app.use("/api/bookings", GeneralBookingRoute);
+app.use("/api/notifications", notifications);
 
 
 
