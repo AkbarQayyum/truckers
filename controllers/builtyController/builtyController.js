@@ -65,6 +65,7 @@ const updateBuilty = async (req, res) => {
       text: `Your Builty Request from ${req.body.date} Has Been Approved.`,
       sentto: req.body.bookerid,
       isRead: false,
+      time: new Date().toLocaleString(),
     };
     const request = await new notiSchema(obj);
     const status = await request.save();

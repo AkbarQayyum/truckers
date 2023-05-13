@@ -13,6 +13,11 @@ const NotificationSchema = new mongoose.Schema({
   isRead:{
     type:Boolean,
     required:true
+  },
+  time:{
+    type:String,
+    required:true
+  
   }
 });
 

@@ -35,6 +35,22 @@ const GetSingleNotication = async (req, res) => {
   }
 };
 
+const UpdateNotification = async (req, res) => {
+  try {
+    console.log(req.body);
+    let data = await NotificationModal.updateOne(
+      { _id: req.body.id },
+      {
+        $set: {
+          isRead: true,
+        },
+      }
+    );
+    res.send({ isSuccess: true, message: "notification update successfully" });
+  } catch (error) {
+    res.send({ Error: error, isSuccess: false });
+  }
+};
 const RemoveNotification = async (req, res) => {
   try {
     let id = req.params.id;
@@ -52,4 +68,5 @@ module.exports = {
   GetSingleNotication,
   RemoveNotification,
   GetUserNotifications,
+  UpdateNotification,
 };
