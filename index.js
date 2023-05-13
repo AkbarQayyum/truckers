@@ -18,6 +18,19 @@ const SellRoutes = require("./routes/SellVehicleRoutes");
 const GeneralBookingRoute = require("./routes/GeneralBookingRoute");
 const notifications = require("./routes/NotificationRoutes");
 
+
+
+const transporter = require("./routes/Registration/transporterRoutes");
+const beopari = require("./routes/Registration/BeopariRoutes");
+const drivers = require("./routes/Registration/DriverRoutes");
+const hotals = require("./routes/Registration/HotalRoutes");
+const mechanic = require("./routes/Registration/MechanicRoutes");
+const servicestations = require("./routes/Registration/ServiceRoutes");
+const spareparts = require("./routes/Registration/SpareRoutes");
+const vehicles = require("./routes/Registration/VehicleRoutes");
+
+
+
 dotenv.config();
 require("./config/mongodb_connection");
 
@@ -33,6 +46,14 @@ app.use("/api/reviews", ReviewRoutes);
 app.use("/api/sell", SellRoutes);
 app.use("/api/bookings", GeneralBookingRoute);
 app.use("/api/notifications", notifications);
+app.use("/api/vehicles", vehicles);
+app.use("/api/spareparts", spareparts);
+app.use("/api/servicestations", servicestations);
+app.use("/api/mechanic", mechanic);
+app.use("/api/hotals", hotals);
+app.use("/api/drivers", drivers);
+app.use("/api/beopari", beopari);
+app.use("/api/transporter", transporter);
 
 
 

@@ -21,7 +21,7 @@ const MechanicSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  profession: {
+  skill: {
     type: String,
     required: true,
   },
@@ -30,25 +30,23 @@ const MechanicSchema = new mongoose.Schema({
     required: true,
   },
 
-  phoneNumber: {
+  phone: {
     type: String,
     required: true,
   },
-  workshop: {
+  workshopname: {
     type: String,
-   
   },
   workshopaddress: {
     type: String,
-   
   },
   cnicfront: {
     type: String,
   },
-  cnicback: {
+  profile: {
     type: String,
   },
-  
+
   isApproved: {
     type: Boolean,
     required: true,
