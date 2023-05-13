@@ -21,15 +21,15 @@ const VehicleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  vehicleName: {
+  vehicleType: {
     type: String,
     required: true,
   },
-  ownerName: {
+  ownername: {
     type: String,
     required: true,
   },
-  ownerPhone: {
+  ownerphone: {
     type: String,
     required: true,
   },
@@ -45,9 +45,8 @@ const VehicleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
- 
 
-  phoneNumber: {
+  phone: {
     type: String,
     required: true,
   },
