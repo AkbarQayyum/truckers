@@ -1,4 +1,4 @@
 const mongoose = require("mongoose");
 const Schema = require("./Schema/Schema");
-const Modal = mongoose.model("generalbooking", Schema);
+const Modal = mongoose.model("generalbookings", Schema);
 module.exports = Modal;
