@@ -17,7 +17,7 @@ const BookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  laguage: {
+  name: {
     type: String,
     required: true,
   },
@@ -33,11 +33,11 @@ const BookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  from: {
+  pickuppoint: {
     type: String,
     required: true,
   },
-  to: {
+  droppoint: {
     type: String,
     required: true,
   },
