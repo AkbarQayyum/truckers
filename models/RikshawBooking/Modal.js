@@ -1,4 +1,4 @@
 const mongoose = require("mongoose");
-const Schema = require("../Registrations/Beopari/Schema/Schema");
+const Schema = require("./Schema/Schema");
 const Modal = mongoose.model("rikshawbooking", Schema);
 module.exports = Modal;
