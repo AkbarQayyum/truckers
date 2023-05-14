@@ -23,7 +23,7 @@ const PostSelling = async (req, res) => {
 
 const GetAllVehicles = async (req, res) => {
   try {
-    const data = await SellModal.find({isVerified:true});
+    const data = await SellModal.find();
     res.send({ data: data, isSuccess: true });
   } catch (error) {
     res.send({ Error: error, isSuccess: false });
@@ -33,8 +33,7 @@ const GetAllVehicles = async (req, res) => {
 const getAllVehicleByName = async (req, res) => {
   try {
     const data = await SellModal.find({
-      isVerified: true,
-      name: req.params.name,
+      isApproved: true,
     });
     res.send({ data: data, isSuccess: true });
   } catch (error) {
@@ -55,7 +54,7 @@ const GetVehicleById = async (req, res) => {
 const UpdateVehicleData = async (req, res) => {
   try {
     let data = await SellModal.updateOne(
-      { _id: req.body.laborid },
+      { _id: req.body.id },
       {
         $set: {
           isApproved: true,
