@@ -21,7 +21,7 @@ const RikshawSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  profession: {
+  type: {
     type: String,
     required: true,
   },
@@ -29,7 +29,7 @@ const RikshawSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  howMany: {
+  distance: {
     type: String,
     required: true,
   },
