@@ -42,7 +42,7 @@ const LaborSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  cnicback: {
+  profile: {
     type: String,
     required: true,
   },
