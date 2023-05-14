@@ -37,7 +37,7 @@ const GoodsSchema = new mongoose.Schema({
   cnicfront: {
     type: String,
   },
-  cnicback: {
+  profile: {
     type: String,
   },
   pic1: {

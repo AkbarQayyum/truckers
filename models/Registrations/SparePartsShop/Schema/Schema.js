@@ -37,7 +37,7 @@ const SpaceSchema = new mongoose.Schema({
   cnicfront: {
     type: String,
   },
-  cnicback: {
+  profile: {
     type: String,
   },
   pic1: {
