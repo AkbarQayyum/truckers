@@ -37,7 +37,7 @@ const Attendance = async (req, res) => {
         },
       }
     );
-    res.send("Record updated");
+    res.send({ message: "Record updated", isSuccess: true });
   } catch (error) {
     res.send({ error: error });
   }
