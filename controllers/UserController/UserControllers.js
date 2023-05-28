@@ -3,18 +3,20 @@ const Users = require("../../models/UserModal");
 const jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
 const sgMail = require("@sendgrid/mail");
-sgMail.setApiKey(
-  "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"
-);
-var transporter = nodemailer.createTransport({
-  service: "gmail",
-  port: 465,
+const apiKey = process.env.SENDGRID;
+console.log(apiKey);
+console.log(process.env.SENDGRID);
+console.log();
+sgMail.setApiKey(apiKey);
+// var transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   port: 465,
 
-  auth: {
-    user: "zumzumtransporters@gmail.com",
-    pass: "swulemljarlyoyjt",
-  },
-});
+//   auth: {
+//     user: "zumzumtransporters@gmail.com",
+//     pass: "swulemljarlyoyjt",
+//   },
+// });
 
 const registerUsers = async (req, res) => {
   try {
@@ -39,10 +41,10 @@ const registerUsers = async (req, res) => {
     //   html: `<div style={text-align:center;}><h3>Welcome To Zum Zum Transport Services</h3><h5>Please Click Button To Verify Your Email</h5><a href='http://localhost:4433/users/auth/verifyemail/${data?._id}' target={_blank}><button>Verify Email</button></a></div>`,
     // };
 
-    sgMail
+    await sgMail
       .send(msg)
-      .then((res) => {
-        // console.log(res);
+      .then((result) => {
+        console.log(result);
         res.send({
           message:
             "User successfully created and Email Verification Link send.",
@@ -65,6 +67,7 @@ const registerUsers = async (req, res) => {
 
     // await res.send({ message: "User Register Successfully.", isSuccess: true });
   } catch (error) {
+    console.log(error);
     res.send({
       Error: error,
       isSuccess: false,
