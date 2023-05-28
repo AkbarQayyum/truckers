@@ -1,5 +1,5 @@
 const Modals = require("../../../models/Registrations/Drivers/Modal");
-
+const DriverModal = require("../../../models/Attendance/Modal");
 const register = async (req, res) => {
   try {
     console.log(req.body);
@@ -18,6 +18,28 @@ const register = async (req, res) => {
       isSuccess: false,
       message: "something went wrong please try again.!",
     });
+  }
+};
+const Attendance = async (req, res) => {
+  try {
+    let data = await DriverModal.updateOne(
+      { _id: req.body.driverId },
+      {
+        $set: {
+          isAvailable: true,
+          city: req?.body?.city ? req?.body?.city : " ",
+          from: req?.body?.from ? req?.body?.from : " ",
+          to: req?.body?.to ? req?.body?.to : " ",
+          vehicle: req?.body?.vehicle ? req?.body?.vehicle : " ",
+          rate: req?.body?.rate ? req?.body?.rate : " ",
+          range: req?.body?.range ? req?.body?.range : " ",
+          registration: req?.body?.registration ? req?.body?.registration : " ",
+        },
+      }
+    );
+    res.send("Record updated");
+  } catch (error) {
+    res.send({ error: error });
   }
 };
 
@@ -74,4 +96,5 @@ module.exports = {
   getById,
   Update,
   Remove,
+  Attendance,
 };

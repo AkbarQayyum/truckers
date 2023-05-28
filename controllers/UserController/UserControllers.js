@@ -4,9 +4,7 @@ const jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
 const sgMail = require("@sendgrid/mail");
 const apiKey = process.env.SENDGRID;
-console.log(apiKey);
-console.log(process.env.SENDGRID);
-console.log();
+const AttendanceModal = require("../../models/Attendance/Modal");
 sgMail.setApiKey(apiKey);
 // var transporter = nodemailer.createTransport({
 //   service: "gmail",
@@ -26,6 +24,23 @@ const registerUsers = async (req, res) => {
     const request = await new Users(obj);
     const data = await request.save();
 
+    if (req.body.registerAs === "Driver") {
+      const obj = {
+        city: "",
+        from: "",
+        to: "",
+        vehicle: "",
+        rate: "0",
+        registration: "0",
+        range: "",
+        driverId: data?._id,
+        isAvailable: true,
+      };
+      const re = await new AttendanceModal(obj);
+      const temp = await re.save();
+      console.log(temp);
+    }
+
     const msg = {
       to: data?.email,
       from: "akbarqayyum0@gmail.com", // Use the email address or domain you verified above
@@ -33,13 +48,6 @@ const registerUsers = async (req, res) => {
       text: "Account Verification Mail",
       html: `<div style={text-align:center;}><h3>Welcome To Zum Zum Transport Services</h3><h5>Please Click Button To Verify Your Email</h5><a href='https://average-cape-toad.cyclic.app/users/auth/verifyemail/${data?._id}' target={_blank}><button>Verify Email</button></a></div>`,
     };
-
-    // var mailOptions = {
-    //   from: "zumzumtransporters@gmail.com",
-    //   to: data?.email,
-    //   subject: "Email Verification",
-    //   html: `<div style={text-align:center;}><h3>Welcome To Zum Zum Transport Services</h3><h5>Please Click Button To Verify Your Email</h5><a href='http://localhost:4433/users/auth/verifyemail/${data?._id}' target={_blank}><button>Verify Email</button></a></div>`,
-    // };
 
     await sgMail
       .send(msg)
@@ -52,20 +60,6 @@ const registerUsers = async (req, res) => {
         });
       })
       .catch((err) => console.log(err));
-
-    // await transporter.sendMail(mailOptions, function (error, info) {
-    //   if (error) {
-    //     console.log(error);
-    //   } else {
-    //     res.send({
-    //       message:
-    //         "User successfully created and Email Verification Link send.",
-    //       isSuccess: true,
-    //     });
-    //   }
-    // });
-
-    // await res.send({ message: "User Register Successfully.", isSuccess: true });
   } catch (error) {
     console.log(error);
     res.send({
