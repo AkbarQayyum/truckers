@@ -2,6 +2,10 @@ const { response } = require("express");
 const Users = require("../../models/UserModal");
 const jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(
+  "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"
+);
 var transporter = nodemailer.createTransport({
   service: "gmail",
   port: 465,
@@ -25,7 +29,7 @@ const registerUsers = async (req, res) => {
       from: "akbarqayyum0@gmail.com", // Use the email address or domain you verified above
       subject: "Email Verification",
       text: "Account Verification Mail",
-      html: `<div style={text-align:center;}><h3>Welcome To Zum Zum Transport Services</h3><h5>Please Click Button To Verify Your Email</h5><a href='http://localhost:4433/users/auth/verifyemail/${data?._id}' target={_blank}><button>Verify Email</button></a></div>`,
+      html: `<div style={text-align:center;}><h3>Welcome To Zum Zum Transport Services</h3><h5>Please Click Button To Verify Your Email</h5><a href='https://average-cape-toad.cyclic.app/users/auth/verifyemail/${data?._id}' target={_blank}><button>Verify Email</button></a></div>`,
     };
 
     // var mailOptions = {
