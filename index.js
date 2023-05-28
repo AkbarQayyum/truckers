@@ -1,10 +1,13 @@
 const express = require("express");
 const app = express();
 var bodyParser = require("body-parser");
+const sgMail = require("@sendgrid/mail");
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
-
+sgMail.setApiKey(
+  "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"
+);
 app.use(bodyParser.json());
 const dotenv = require("dotenv");
 const usersRouters = require("./routes/Auth_routes");
@@ -18,8 +21,6 @@ const SellRoutes = require("./routes/SellVehicleRoutes");
 const GeneralBookingRoute = require("./routes/GeneralBookingRoute");
 const notifications = require("./routes/NotificationRoutes");
 
-
-
 const transporter = require("./routes/Registration/transporterRoutes");
 const beopari = require("./routes/Registration/BeopariRoutes");
 const drivers = require("./routes/Registration/DriverRoutes");
@@ -29,12 +30,8 @@ const servicestations = require("./routes/Registration/ServiceRoutes");
 const spareparts = require("./routes/Registration/SpareRoutes");
 const vehicles = require("./routes/Registration/VehicleRoutes");
 
-
-
 dotenv.config();
 require("./config/mongodb_connection");
-
-
 
 app.use("/users/auth/", usersRouters);
 app.use("/api/builty", builtyroutes);
@@ -54,19 +51,6 @@ app.use("/api/hotals", hotals);
 app.use("/api/drivers", drivers);
 app.use("/api/beopari", beopari);
 app.use("/api/transporter", transporter);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const PORT = process.env.PORT || 4433;
 

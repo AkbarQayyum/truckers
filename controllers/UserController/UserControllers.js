@@ -20,26 +20,46 @@ const registerUsers = async (req, res) => {
     const request = await new Users(obj);
     const data = await request.save();
 
-    var mailOptions = {
-      from: "zumzumtransporters@gmail.com",
+    const msg = {
       to: data?.email,
+      from: "akbarqayyum0@gmail.com", // Use the email address or domain you verified above
       subject: "Email Verification",
+      text: "Account Verification Mail",
       html: `<div style={text-align:center;}><h3>Welcome To Zum Zum Transport Services</h3><h5>Please Click Button To Verify Your Email</h5><a href='http://localhost:4433/users/auth/verifyemail/${data?._id}' target={_blank}><button>Verify Email</button></a></div>`,
     };
-    await transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
+
+    // var mailOptions = {
+    //   from: "zumzumtransporters@gmail.com",
+    //   to: data?.email,
+    //   subject: "Email Verification",
+    //   html: `<div style={text-align:center;}><h3>Welcome To Zum Zum Transport Services</h3><h5>Please Click Button To Verify Your Email</h5><a href='http://localhost:4433/users/auth/verifyemail/${data?._id}' target={_blank}><button>Verify Email</button></a></div>`,
+    // };
+
+    sgMail
+      .send(msg)
+      .then((res) => {
+        // console.log(res);
         res.send({
           message:
             "User successfully created and Email Verification Link send.",
           isSuccess: true,
         });
-      }
-    });
+      })
+      .catch((err) => console.log(err));
 
-    await res.send({message:'User Register Successfully.',isSuccess:true})
-   
+    // await transporter.sendMail(mailOptions, function (error, info) {
+    //   if (error) {
+    //     console.log(error);
+    //   } else {
+    //     res.send({
+    //       message:
+    //         "User successfully created and Email Verification Link send.",
+    //       isSuccess: true,
+    //     });
+    //   }
+    // });
+
+    // await res.send({ message: "User Register Successfully.", isSuccess: true });
   } catch (error) {
     res.send({
       Error: error,

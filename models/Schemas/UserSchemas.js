@@ -23,6 +23,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  registerAs: {
+    type: String,
+    required: true,
+    defaultValue: "User",
+  },
   isEmailVerified: {
     type: Boolean,
     required: true,
