@@ -1,13 +1,10 @@
 const express = require("express");
 const app = express();
 var bodyParser = require("body-parser");
-const sgMail = require("@sendgrid/mail");
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
-sgMail.setApiKey(
-  "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"
-);
+
 app.use(bodyParser.json());
 const dotenv = require("dotenv");
 const usersRouters = require("./routes/Auth_routes");

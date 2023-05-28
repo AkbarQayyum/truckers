@@ -46,10 +46,14 @@ const Attendance = async (req, res) => {
 const getalls = async (req, res) => {
   try {
     const data = await Modals.find();
-    const attend = await DriverModal.find().papulate("RegisterUsers").exec();
+    const attend = await DriverModal.find({
+      driverId: "647398b6906f515759df14a1",
+    }).populate('driverId').exec()
+     
     console.log(attend);
     res.send({ data: data, isSuccess: true, attend: attend });
   } catch (error) {
+    console.log(error)
     res.send({ Error: error, isSuccess: false });
   }
 };
