@@ -7,6 +7,7 @@ const AddBuilty = async (req, res) => {
     console.log(obj);
     const request = await new BuiltyModal(obj);
     const data = await request.save();
+    console.log(data);
     res.send({
       message: "Builty Request Submitted Successfully",
       isSuccess: true,
