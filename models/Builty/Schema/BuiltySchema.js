@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-Schema = mongoose.Schema
+Schema = mongoose.Schema;
 // importing reviews schema
 
 //create new instance of mongoose schema using mongoose internal schema validtion
@@ -77,6 +77,10 @@ const BuiltySchema = new mongoose.Schema({
     required: true,
   },
   accountable: {
+    type: String,
+    required: true,
+  },
+  paymentReceipt: {
     type: String,
     required: true,
   },
