@@ -9,23 +9,8 @@ const GoodsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  state: {
-    type: String,
-    required: true,
-  },
-  city: {
-    type: String,
-    required: true,
-  },
+
   address: {
-    type: String,
-    required: true,
-  },
-  businessName: {
-    type: String,
-    required: true,
-  },
-  businessAddress: {
     type: String,
     required: true,
   },

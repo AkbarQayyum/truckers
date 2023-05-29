@@ -9,23 +9,8 @@ const SpaceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  state: {
-    type: String,
-    required: true,
-  },
-  city: {
-    type: String,
-    required: true,
-  },
+
   address: {
-    type: String,
-    required: true,
-  },
-  businessName: {
-    type: String,
-    required: true,
-  },
-  businessAddress: {
     type: String,
     required: true,
   },
@@ -34,18 +19,14 @@ const SpaceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  cnicfront: {
+
+  visitingcard: {
     type: String,
   },
-  profile: {
+  shop: {
     type: String,
   },
-  pic1: {
-    type: String,
-  },
-  pic2: {
-    type: String,
-  },
+
   isApproved: {
     type: Boolean,
     required: true,

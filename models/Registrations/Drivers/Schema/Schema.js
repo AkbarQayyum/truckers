@@ -31,6 +31,10 @@ const DriverSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  vehicle: {
+    type: String,
+    required: true,
+  },
 
   phoneNumber: {
     type: String,

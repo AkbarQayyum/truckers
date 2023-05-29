@@ -9,23 +9,8 @@ const hotalSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  state: {
-    type: String,
-    required: true,
-  },
-  city: {
-    type: String,
-    required: true,
-  },
+
   address: {
-    type: String,
-    required: true,
-  },
-  businessName: {
-    type: String,
-    required: true,
-  },
-  businessAddress: {
     type: String,
     required: true,
   },
@@ -34,16 +19,16 @@ const hotalSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  cnicfront: {
+  rate_list: {
     type: String,
   },
-  profile: {
+  licence: {
     type: String,
   },
-  pic1: {
+  visiting: {
     type: String,
   },
-  pic2: {
+  shop: {
     type: String,
   },
   isApproved: {

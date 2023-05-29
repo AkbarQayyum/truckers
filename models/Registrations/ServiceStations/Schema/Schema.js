@@ -9,23 +9,8 @@ const ServiceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  state: {
-    type: String,
-    required: true,
-  },
-  city: {
-    type: String,
-    required: true,
-  },
+
   address: {
-    type: String,
-    required: true,
-  },
-  businessName: {
-    type: String,
-    required: true,
-  },
-  businessAddress: {
     type: String,
     required: true,
   },
@@ -34,16 +19,16 @@ const ServiceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  visiting: {
+    type: String,
+  },
   cnicfront: {
     type: String,
   },
-  profile: {
+  rate_list: {
     type: String,
   },
-  pic1: {
-    type: String,
-  },
-  pic2: {
+  shop: {
     type: String,
   },
   isApproved: {

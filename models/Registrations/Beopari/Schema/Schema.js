@@ -9,23 +9,8 @@ const BeopariSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  state: {
-    type: String,
-    required: true,
-  },
-  city: {
-    type: String,
-    required: true,
-  },
+
   address: {
-    type: String,
-    required: true,
-  },
-  profession: {
-    type: String,
-    required: true,
-  },
-  experience: {
     type: String,
     required: true,
   },
@@ -38,6 +23,9 @@ const BeopariSchema = new mongoose.Schema({
     type: String,
   },
   profile: {
+    type: String,
+  },
+  shopimg: {
     type: String,
   },
   isApproved: {

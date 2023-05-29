@@ -9,30 +9,22 @@ const LaborSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  state: {
-    type: String,
-    required: true,
-  },
+
   city: {
     type: String,
     required: true,
-
   },
   address: {
     type: String,
     required: true,
-
   },
   profession: {
     type: String,
     required: true,
-
-
   },
   experience: {
     type: String,
     required: true,
-
   },
   phoneNumber: {
     type: String,
@@ -46,7 +38,7 @@ const LaborSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
- isApproved: {
+  isApproved: {
     type: Boolean,
     required: true,
   },
