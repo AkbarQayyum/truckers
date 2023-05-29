@@ -9,39 +9,18 @@ const VehicleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  state: {
-    type: String,
-    required: true,
-  },
+
   city: {
     type: String,
     required: true,
   },
-  address: {
-    type: String,
-    required: true,
-  },
+
   vehicleType: {
     type: String,
     required: true,
   },
-  ownername: {
-    type: String,
-    required: true,
-  },
-  ownerphone: {
-    type: String,
-    required: true,
-  },
-  licenceType: {
-    type: String,
-    required: true,
-  },
-  licenceNumber: {
-    type: String,
-    required: true,
-  },
-  experience: {
+
+  ownerPhone: {
     type: String,
     required: true,
   },
@@ -60,6 +39,12 @@ const VehicleSchema = new mongoose.Schema({
     type: String,
   },
   cnicfront: {
+    type: String,
+  },
+  ownerpic: {
+    type: String,
+  },
+  ownerlicence: {
     type: String,
   },
   isApproved: {
