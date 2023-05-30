@@ -32,11 +32,12 @@ const GetAllBookings = async (req, res) => {
 
 const GetAllAvailableRikshaws = async (req, res) => {
   try {
+    const temp = await attendanceModal.find()
     const data = await attendanceModal.find({
       city: req.body.city,
       vehicle: "rikshaw",
     });
-    res.send({ data: data, isSuccess: true });
+    res.send({ data: data, isSuccess: true, temp });
   } catch (error) {
     res.send({ Error: error, isSuccess: false });
   }

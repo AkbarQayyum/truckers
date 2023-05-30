@@ -27,13 +27,13 @@ const Attendance = async (req, res) => {
       {
         $set: {
           isAvailable: true,
-          city: req?.body?.city ? req?.body?.city : " ",
-          from: req?.body?.from ? req?.body?.from : " ",
-          to: req?.body?.to ? req?.body?.to : " ",
-          vehicle: req?.body?.vehicle ? req?.body?.vehicle : " ",
-          rate: req?.body?.rate ? req?.body?.rate : " ",
-          range: req?.body?.range ? req?.body?.range : " ",
-          registration: req?.body?.registration ? req?.body?.registration : " ",
+          city: req.body.city,
+          from: req.body.from ,
+          to: req.body.to,
+          vehicle: req.body.vehicle,
+          rate: req.body.rate ,
+          range: req.body.range,
+          registration: req.body.registration,
         },
       }
     );
