@@ -1,5 +1,5 @@
 const RikshawModal = require("../../models/RikshawBooking/Modal");
-
+const attendanceModal = require("../../models/Attendance/Modal");
 const registerRikshawBooking = async (req, res) => {
   try {
     console.log(req.body);
@@ -24,6 +24,18 @@ const registerRikshawBooking = async (req, res) => {
 const GetAllBookings = async (req, res) => {
   try {
     const data = await RikshawModal.find();
+    res.send({ data: data, isSuccess: true });
+  } catch (error) {
+    res.send({ Error: error, isSuccess: false });
+  }
+};
+
+const GetAllAvailableRikshaws = async (req, res) => {
+  try {
+    const data = await attendanceModal.find({
+      city: req.body.city,
+      vehicle: "rikshaw",
+    });
     res.send({ data: data, isSuccess: true });
   } catch (error) {
     res.send({ Error: error, isSuccess: false });
@@ -74,4 +86,5 @@ module.exports = {
   GetBookingById,
   updataBooking,
   RemoveBooking,
+  GetAllAvailableRikshaws,
 };
