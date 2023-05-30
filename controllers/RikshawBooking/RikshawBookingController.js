@@ -38,7 +38,7 @@ const GetAllAvailableRikshaws = async (req, res) => {
         vehicle: "rikshaw",
       })
       .populate("driverId")
-      .exec();
+     ;
     res.send({ data: data, isSuccess: true });
   } catch (error) {
     res.send({ Error: error, isSuccess: false });
