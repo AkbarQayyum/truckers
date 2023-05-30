@@ -23,15 +23,15 @@ const register = async (req, res) => {
 const Attendance = async (req, res) => {
   try {
     let data = await DriverModal.updateOne(
-      { _id: req.body.driverId },
+      { driverId: req.body.driverId },
       {
         $set: {
           isAvailable: true,
           city: req.body.city,
-          from: req.body.from ,
+          from: req.body.from,
           to: req.body.to,
           vehicle: req.body.vehicle,
-          rate: req.body.rate ,
+          rate: req.body.rate,
           range: req.body.range,
           registration: req.body.registration,
         },
