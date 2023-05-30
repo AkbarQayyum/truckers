@@ -32,11 +32,13 @@ const GetAllBookings = async (req, res) => {
 
 const GetAllAvailableRikshaws = async (req, res) => {
   try {
- 
-    const data = await attendanceModal.find({
-      city: req.body.city,
-      vehicle: "rikshaw",
-    });
+    const data = await attendanceModal
+      .find({
+        city: req.body.city,
+        vehicle: "rikshaw",
+      })
+      .populate("driverId")
+      .exec();
     res.send({ data: data, isSuccess: true });
   } catch (error) {
     res.send({ Error: error, isSuccess: false });
