@@ -40,19 +40,6 @@ const GetLaborBookById = async (req, res) => {
   }
 };
 
-const GetlaborByProfession = async (req, res) => {
-  try {
-    let data = await LaborModal.find({
-      profession: req.body.profession,
-      city: req.body.city,
-    });
-    console.log(data);
-    res.send({ data: data, isSuccess: true });
-  } catch (error) {
-    res.send({ Error: error, isSuccess: false });
-  }
-};
-
 const updataBooking = async (req, res) => {
   try {
     let data = await LaborModal.updateOne(
@@ -86,6 +73,5 @@ module.exports = {
   GetAllLaborBookings,
   GetLaborBookById,
   updataBooking,
-  GetlaborByProfession,
   RemoveBooking,
 };

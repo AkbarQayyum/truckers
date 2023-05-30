@@ -20,7 +20,20 @@ const registerLabor = async (req, res) => {
     });
   }
 };
+const GetlaborByProfession = async (req, res) => {
+  try {
+    console.log(req.body);
 
+    let data = await LaborModal.find({
+      profession: req.body.profession,
+      city: req.body.city,
+    });
+    console.log(data);
+    res.send({ data: data, isSuccess: true });
+  } catch (error) {
+    res.send({ Error: error, isSuccess: false });
+  }
+};
 const getAllUsers = async (req, res) => {
   try {
     const data = await LaborModal.find();
@@ -36,7 +49,7 @@ const getLaborById = async (req, res) => {
     console.log(data);
     res.send({ data: data, isSuccess: true });
   } catch (error) {
-    res.send({ Error: error,isSuccess:false });
+    res.send({ Error: error, isSuccess: false });
   }
 };
 
@@ -46,7 +59,7 @@ const updateUser = async (req, res) => {
       { _id: req.body.laborid },
       {
         $set: {
-          isApproved:true
+          isApproved: true,
         },
       }
     );
@@ -74,4 +87,5 @@ module.exports = {
   getLaborById,
   updateUser,
   removeLabor,
+  GetlaborByProfession,
 };

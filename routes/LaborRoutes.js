@@ -4,6 +4,7 @@ const verifyUser = require("../MiddleWares/VerifyUser");
 const LaborController = require("../controllers/LaborBooking/LaborController");
 router.get("/", LaborController.getAllUsers);
 router.post("/register/", LaborController.registerLabor);
+router.post("/search/", LaborController.GetlaborByProfession);
 router.get("/:id", LaborController.getLaborById);
 router.put("/update/", LaborController.updateUser);
 router.delete("/delete/:id", LaborController.removeLabor);
