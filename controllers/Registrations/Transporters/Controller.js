@@ -59,9 +59,13 @@ const SearchVehicle = async (req, res) => {
         isAvailable: true,
       });
 
-      return res.send({ data: data, isSuccess: true });
+      return res.send({ data: data, isSuccess: true, message: "ok.!" });
     } else if (tempobj?.length < 1) {
-      res.send({ data: "Fee Not Paid", isSuccess: false });
+      res.send({
+        data: "Fee Not Paid",
+        isSuccess: false,
+        message: "Fee Not Paid",
+      });
     }
   } catch (error) {
     res.send({ Error: error, isSuccess: false });
