@@ -2,9 +2,10 @@ const NotificationModal = require("../../models/notifications/Modal");
 
 const GetNotification = async (req, res) => {
   try {
-    const data = await NotificationModal.find();
+    const data = await NotificationModal.find().populate("sentto");
     res.send({ data: data, isSuccess: true });
   } catch (error) {
+    console.log(error)
     res.send({ Error: error, isSuccess: false });
   }
 };

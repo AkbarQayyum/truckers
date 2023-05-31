@@ -37,7 +37,7 @@ const GetAllAvailableRikshaws = async (req, res) => {
         city: req.body.city,
         vehicle: "rikshaw",
       })
-      .populate("driverId")
+      .populate("driverId");
      ;
     res.send({ data: data, isSuccess: true });
   } catch (error) {

@@ -7,7 +7,21 @@ const register = async (req, res) => {
     console.log(obj);
     const request = await new Modals(obj);
     const data = await request.save();
-
+    if (data) {
+      let obj = {
+        city: "",
+        from: "",
+        to: "",
+        vehicle: "",
+        rate: "0",
+        registration: "0",
+        range: "",
+        driverId: data?.userid,
+        isAvailable: false,
+      };
+       const requ = await new DriverModal(obj);
+       const dat = await requ.save();
+    }
     res.send({
       message: "Register successfully.",
       isSuccess: true,
@@ -48,12 +62,14 @@ const getalls = async (req, res) => {
     const data = await Modals.find();
     const attend = await DriverModal.find({
       driverId: "647398b6906f515759df14a1",
-    }).populate('driverId').exec()
-     
+    })
+      .populate("driverId")
+      .exec();
+
     console.log(attend);
     res.send({ data: data, isSuccess: true, attend: attend });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.send({ Error: error, isSuccess: false });
   }
 };

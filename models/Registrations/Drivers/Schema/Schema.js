@@ -60,6 +60,7 @@ const DriverSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: "RegisterUsers",
     required: true,
+    unique: true,
   },
 });
 
