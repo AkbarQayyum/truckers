@@ -58,9 +58,9 @@ const SearchVehicle = async (req, res) => {
         vehicle: req.body.vehicle,
         isAvailable: true,
       });
-
+const ob=JSON.parse(JSON.stringify(data))
       return res.send({
-        data: { ...data, driverId: tempobj[0] },
+        data: { ...ob, driverId: tempobj[0] },
         isSuccess: true,
         message: "ok.!",
       });
