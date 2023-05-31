@@ -26,6 +26,7 @@ const mechanic = require("./routes/Registration/MechanicRoutes");
 const servicestations = require("./routes/Registration/ServiceRoutes");
 const spareparts = require("./routes/Registration/SpareRoutes");
 const vehicles = require("./routes/Registration/VehicleRoutes");
+const TransporterReceipt = require("./routes/TransporterReceiptRoute");
 
 dotenv.config();
 require("./config/mongodb_connection");
@@ -48,6 +49,7 @@ app.use("/api/hotals", hotals);
 app.use("/api/drivers", drivers);
 app.use("/api/beopari", beopari);
 app.use("/api/transporter", transporter);
+app.use("/api/transporterreceipt", TransporterReceipt);
 
 const PORT = process.env.PORT || 4433;
 
