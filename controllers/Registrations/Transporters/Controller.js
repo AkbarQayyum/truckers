@@ -60,10 +60,9 @@ const SearchVehicle = async (req, res) => {
       });
 
       return res.send({
-        data: data,
+        data: { ...data, driverId: tempobj[0] },
         isSuccess: true,
         message: "ok.!",
-        driverId: tempobj[0],
       });
     } else if (tempobj?.length < 1) {
       res.send({
