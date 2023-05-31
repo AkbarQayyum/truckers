@@ -60,7 +60,7 @@ const SearchVehicle = async (req, res) => {
       });
 const ob=JSON.parse(JSON.stringify(data))
       return res.send({
-        data: { ...ob, driverId: tempobj[0] },
+        data: { ...ob[0], driverId: tempobj[0] },
         isSuccess: true,
         message: "ok.!",
       });
