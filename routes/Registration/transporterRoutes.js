@@ -5,6 +5,7 @@ const verifyUser = require("../../MiddleWares/VerifyUser");
 const transcontrollers = require("../../controllers/Registrations/Transporters/Controller");
 router.get("/", transcontrollers.getalls);
 router.post("/", transcontrollers.register);
+router.post("/search", transcontrollers.SearchVehicle);
 router.get("/:id", transcontrollers.getById);
 router.put("/", transcontrollers.Update);
 router.delete("/:id", transcontrollers.Remove);

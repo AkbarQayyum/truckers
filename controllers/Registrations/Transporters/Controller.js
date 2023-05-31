@@ -1,5 +1,5 @@
 const Modals = require("../../../models/Registrations/Transporters/Modal");
-
+const att = require("../../../models/Attendance/Modal");
 const register = async (req, res) => {
   try {
     console.log(req.body);
@@ -40,6 +40,23 @@ const getById = async (req, res) => {
   }
 };
 
+const SearchVehicle = async (req, res) => {
+  try {
+    let temp = await att.find()
+    let data = await att
+      .find({
+        city: req.body.city,
+        vehicle: req.body.vehicle,
+        isAvailable: true,
+      })
+      .populate("driverId");
+    console.log(data);
+    res.send({ data: data, isSuccess: true, temp });
+  } catch (error) {
+    res.send({ Error: error, isSuccess: false });
+  }
+};
+
 const Update = async (req, res) => {
   try {
     let data = await Modals.updateOne(
@@ -74,4 +91,5 @@ module.exports = {
   getById,
   Update,
   Remove,
+  SearchVehicle,
 };
