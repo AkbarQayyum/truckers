@@ -3,7 +3,12 @@ const att = require("../../../models/Attendance/Modal");
 const register = async (req, res) => {
   try {
     console.log(req.body);
-    const obj = { ...req.body, isApproved: false };
+    const obj = {
+      ...req.body,
+      isApproved: false,
+      isFeePaid: false,
+      feetime: "",
+    };
     console.log(obj);
     const request = await new Modals(obj);
     const data = await request.save();

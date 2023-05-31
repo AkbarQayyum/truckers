@@ -33,7 +33,6 @@ const GoodsSchema = new mongoose.Schema({
   },
   isFeePaid: {
     type: Boolean,
-    defaultValue:false,
   },
   feetime: {
     type: String,
