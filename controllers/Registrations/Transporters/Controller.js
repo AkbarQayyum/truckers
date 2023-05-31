@@ -64,7 +64,7 @@ const ob=JSON.parse(JSON.stringify(data))
         isSuccess: true,
         message: "ok.!",
       });
-    } else if (tempobj?.length < 1) {
+    } else if (tempobj?.length > 0 && tempobj[0]?.isFeePaid === false) {
       res.send({
         data: "Fee Not Paid",
         isSuccess: false,
