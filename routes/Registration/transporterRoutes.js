@@ -6,6 +6,7 @@ const transcontrollers = require("../../controllers/Registrations/Transporters/C
 router.get("/", transcontrollers.getalls);
 router.post("/", transcontrollers.register);
 router.post("/search", transcontrollers.SearchVehicle);
+router.put("/update", transcontrollers.UpdateFee);
 router.get("/:id", transcontrollers.getById);
 router.put("/", transcontrollers.Update);
 router.delete("/:id", transcontrollers.Remove);

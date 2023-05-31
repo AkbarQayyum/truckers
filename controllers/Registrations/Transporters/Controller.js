@@ -47,21 +47,42 @@ const getById = async (req, res) => {
 
 const SearchVehicle = async (req, res) => {
   try {
-    let temp = await att.find()
-    let data = await att
-      .find({
+    console.log("sdsd");
+    let found = await Modals.find({ userid: req.body.userId });
+
+    console.log(found);
+    const tempobj = JSON.parse(JSON.stringify(found));
+    if (tempobj?.length > 0 && tempobj[0]?.isFeePaid === true) {
+      let data = await att.find({
         city: req.body.city,
         vehicle: req.body.vehicle,
         isAvailable: true,
-      })
-      .populate("driverId");
-    console.log(data);
-    res.send({ data: data, isSuccess: true, temp });
+      });
+
+      return res.send({ data: data, isSuccess: true });
+    } else if (tempobj?.length < 1) {
+      res.send({ data: "Fee Not Paid", isSuccess: false });
+    }
   } catch (error) {
     res.send({ Error: error, isSuccess: false });
   }
 };
 
+const UpdateFee = async (req, res) => {
+  try {
+    let data = await Modals.updateOne(
+      { userid: req.body.userId },
+      {
+        $set: {
+          isFeePaid: true,
+        },
+      }
+    );
+    res.send("Record updated");
+  } catch (error) {
+    res.send({ error: error });
+  }
+};
 const Update = async (req, res) => {
   try {
     let data = await Modals.updateOne(
@@ -97,4 +118,5 @@ module.exports = {
   Update,
   Remove,
   SearchVehicle,
+  UpdateFee,
 };
