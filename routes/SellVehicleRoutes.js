@@ -3,7 +3,7 @@ const router = express.Router();
 const verifyUser = require("../MiddleWares/VerifyUser");
 const SellController = require("../controllers/SellVehicles/SellVehicleController");
 router.get("/", SellController.GetAllVehicles);
-router.get("/approved", SellController.getAllVehicleByName);
+router.post("/approved", SellController.getAllVehicleByName);
 router.post("/register/", SellController.PostSelling);
 router.get("/:id", SellController.GetVehicleById);
 router.put("/update/", SellController.UpdateVehicleData);

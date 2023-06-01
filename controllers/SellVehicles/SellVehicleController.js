@@ -34,6 +34,7 @@ const getAllVehicleByName = async (req, res) => {
   try {
     const data = await SellModal.find({
       isApproved: true,
+      vehicle: req.body.title,
     });
     res.send({ data: data, isSuccess: true });
   } catch (error) {
