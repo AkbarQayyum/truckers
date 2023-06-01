@@ -82,7 +82,7 @@ const UpdateFee = async (req, res) => {
       { userid: req.body.userId },
       {
         $set: {
-          isFeePaid: false,
+          isFeePaid: true,
         },
       }
     );

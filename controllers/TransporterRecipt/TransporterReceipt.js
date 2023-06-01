@@ -9,7 +9,7 @@ const register = async (req, res) => {
     const data = await request.save();
 
     res.send({
-      message: "Register successfully.",
+      message: "Register successfully. Wait For Approval",
       isSuccess: true,
     });
   } catch (error) {

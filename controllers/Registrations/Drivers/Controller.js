@@ -19,8 +19,8 @@ const register = async (req, res) => {
         driverId: data?.userid,
         isAvailable: false,
       };
-       const requ = await new DriverModal(obj);
-       const dat = await requ.save();
+      const requ = await new DriverModal(obj);
+      const dat = await requ.save();
     }
     res.send({
       message: "Register successfully.",
@@ -60,14 +60,26 @@ const Attendance = async (req, res) => {
 const getalls = async (req, res) => {
   try {
     const data = await Modals.find();
-    const attend = await DriverModal.find({
-      driverId: "647398b6906f515759df14a1",
-    })
-      .populate("driverId")
-      .exec();
+    const attend = await DriverModal.find().populate("driverId").exec();
 
     console.log(attend);
     res.send({ data: data, isSuccess: true, attend: attend });
+  } catch (error) {
+    console.log(error);
+    res.send({ Error: error, isSuccess: false });
+  }
+};
+
+const SearchDriver = async (req, res) => {
+  try {
+    const attend = await Modals.find({
+      city: req.body.city,
+      vehicle: req.body.vehicle,
+    })
+      .populate("userid")
+     
+
+    res.send({ data: attend, isSuccess: true });
   } catch (error) {
     console.log(error);
     res.send({ Error: error, isSuccess: false });
@@ -119,4 +131,5 @@ module.exports = {
   Update,
   Remove,
   Attendance,
+  SearchDriver,
 };
