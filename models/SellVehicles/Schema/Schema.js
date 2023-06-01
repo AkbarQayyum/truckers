@@ -9,24 +9,7 @@ const SellVehicleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  make: {
-    type: String,
-    required: true,
-  },
-  modal: {
-    type: String,
-    required: true,
-  },
-  variant: {
-    type: String,
-  },
-  mileage: {
-    type: String,
-    required: true,
-  },
-  condition: {
-    type: String,
-  },
+
   city: {
     type: String,
     required: true,
@@ -39,9 +22,20 @@ const SellVehicleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
   pic2: {
     type: String,
   },
+  price: {
+    type: String,
+  },
+  vehicle: {
+    type: String,
+  },
+  desc: {
+    type: String,
+  },
+ 
   isApproved: {
     type: Boolean,
     required: true,
