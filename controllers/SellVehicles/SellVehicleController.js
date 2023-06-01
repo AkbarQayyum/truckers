@@ -33,7 +33,6 @@ const GetAllVehicles = async (req, res) => {
 const getAllVehicleByName = async (req, res) => {
   try {
     const data = await SellModal.find({
-     
       vehicle: req.body.title,
     });
     res.send({ data: data, isSuccess: true });
