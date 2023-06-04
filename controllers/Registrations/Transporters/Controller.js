@@ -83,6 +83,7 @@ const UpdateFee = async (req, res) => {
       {
         $set: {
           isFeePaid: true,
+          feetime: new Date().toLocaleString(),
         },
       }
     );
