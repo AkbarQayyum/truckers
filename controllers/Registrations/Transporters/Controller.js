@@ -93,14 +93,13 @@ const UpdateFee = async (req, res) => {
   }
 };
 
-
 const UpdateFeeDetails = async (req, res) => {
   try {
     let data = await Modals.updateOne(
       { userid: req.body.userid },
       {
         $set: {
-         receipt:req.body.receipt
+          receipt: req.body.receipt,
         },
       }
     );
@@ -110,9 +109,6 @@ const UpdateFeeDetails = async (req, res) => {
   }
 };
 
-
-
-
 const Update = async (req, res) => {
   try {
     let data = await Modals.updateOne(
@@ -120,6 +116,8 @@ const Update = async (req, res) => {
       {
         $set: {
           isFeePaid: false,
+          receipt: null,
+          feetime: null,
         },
       }
     );
