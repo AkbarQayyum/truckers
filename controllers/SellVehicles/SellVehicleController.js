@@ -57,7 +57,7 @@ const UpdateVehicleData = async (req, res) => {
       { _id: req.body.id },
       {
         $set: {
-          isApproved: true,
+          isApproved: flase,
         },
       }
     );
