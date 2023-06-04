@@ -48,6 +48,7 @@ const Attendance = async (req, res) => {
           rate: req.body.rate,
           range: req.body.range,
           registration: req.body.registration,
+          date: new Date().toLocaleString(),
         },
       }
     );
