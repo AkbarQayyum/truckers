@@ -175,19 +175,19 @@ const removeUser = async (req, res) => {
 };
 const GetDashboardData = async (req, res) => {
   try {
-    let user = Users.find();
-    let vehi = VehiclesRegister.find();
-    let spare = SpareParts.find();
-    let serv = ServiceStation.find();
-    let mech = Mechanic.find();
-    let hota = Hotals.find();
-    let driver = Drivers.find();
-    let beo = Beopari.find();
-    let sell = Vehicles.find();
-    let trans = Transporters.find();
-    let buil = Vehicles.find();
-    let lab = Labor.find();
-    res.send({
+    let user = await Users.find();
+    let vehi = await VehiclesRegister.find();
+    let spare = await SpareParts.find();
+    let serv = await ServiceStation.find();
+    let mech = await Mechanic.find();
+    let hota = await Hotals.find();
+    let driver = await Drivers.find();
+    let beo = await Beopari.find();
+    let sell = await Vehicles.find();
+    let trans = await Transporters.find();
+    let buil = await Vehicles.find();
+    let lab = await Labor.find();
+    await res.send({
       cardsData: {
         user: user?.length,
         builty: buil?.length,
