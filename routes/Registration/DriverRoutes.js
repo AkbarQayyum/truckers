@@ -6,6 +6,7 @@ const transcontrollers = require("../../controllers/Registrations/Drivers/Contro
 router.get("/", transcontrollers.getalls);
 router.post("/", transcontrollers.register);
 router.post("/search", transcontrollers.SearchDriver);
+router.get("/attendance", transcontrollers.GetAttendance);
 router.put("/attendance", transcontrollers.Attendance);
 router.get("/:id", transcontrollers.getById);
 router.put("/", transcontrollers.Update);

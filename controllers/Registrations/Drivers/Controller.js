@@ -75,11 +75,20 @@ const SearchDriver = async (req, res) => {
     const attend = await Modals.find({
       city: req.body.city,
       vehicle: req.body.vehicle,
-    })
-      .populate("userid")
-     
+    }).populate("userid");
 
-    res.send({ data: attend, isSuccess: true,message:'Data Fetched' });
+    res.send({ data: attend, isSuccess: true, message: "Data Fetched" });
+  } catch (error) {
+    console.log(error);
+    res.send({ Error: error, isSuccess: false });
+  }
+};
+
+const GetAttendance = async (req, res) => {
+  try {
+    const attend = await DriverModal.find().populate("driverId");
+
+    res.send({ data: attend, isSuccess: true, message: "Data Fetched" });
   } catch (error) {
     console.log(error);
     res.send({ Error: error, isSuccess: false });
@@ -132,4 +141,5 @@ module.exports = {
   Remove,
   Attendance,
   SearchDriver,
+  GetAttendance,
 };
