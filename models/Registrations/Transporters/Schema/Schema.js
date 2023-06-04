@@ -42,6 +42,10 @@ const GoodsSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
+  receipt: {
+    type: String,
+  },
+
   userid: {
     type: Schema.Types.ObjectId,
     ref: "RegisterUsers",

@@ -93,6 +93,26 @@ const UpdateFee = async (req, res) => {
   }
 };
 
+
+const UpdateFeeDetails = async (req, res) => {
+  try {
+    let data = await Modals.updateOne(
+      { userid: req.body.userid },
+      {
+        $set: {
+         receipt:req.body.receipt
+        },
+      }
+    );
+    res.send({ message: "Record updated", isSuccess: true });
+  } catch (error) {
+    res.send({ error: error });
+  }
+};
+
+
+
+
 const Update = async (req, res) => {
   try {
     let data = await Modals.updateOne(
@@ -129,4 +149,5 @@ module.exports = {
   Remove,
   SearchVehicle,
   UpdateFee,
+  UpdateFeeDetails,
 };
