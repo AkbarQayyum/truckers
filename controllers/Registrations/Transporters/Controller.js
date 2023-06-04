@@ -79,7 +79,7 @@ const SearchVehicle = async (req, res) => {
 const UpdateFee = async (req, res) => {
   try {
     let data = await Modals.updateOne(
-      { userid: req.body.userId },
+      { userid: req.body.id },
       {
         $set: {
           isFeePaid: true,
@@ -87,18 +87,19 @@ const UpdateFee = async (req, res) => {
         },
       }
     );
-    res.send("Record updated");
+    res.send({ message: "Record updated", isSuccess: true });
   } catch (error) {
     res.send({ error: error });
   }
 };
+
 const Update = async (req, res) => {
   try {
     let data = await Modals.updateOne(
-      { _id: req.body.laborid },
+      { _id: req.body.id },
       {
         $set: {
-          isApproved: true,
+          isFeePaid: false,
         },
       }
     );
