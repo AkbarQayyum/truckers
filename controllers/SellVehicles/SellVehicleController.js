@@ -61,9 +61,9 @@ const UpdateVehicleData = async (req, res) => {
         },
       }
     );
-    res.send("Vehicle record updated");
+    res.send({ message: "Vehicle record updated", isSuccess: true });
   } catch (error) {
-    res.send({ error: error });
+    res.send({ message: error,isSuccess:false });
   }
 };
 
