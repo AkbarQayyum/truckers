@@ -23,14 +23,12 @@ const AddReview = async (req, res) => {
 
 const GetAllReviews = async (req, res) => {
   try {
-    const data = await ReviewModal.find();
+    const data = await ReviewModal.find().populate("userid");
     res.send({ data: data, isSuccess: true });
   } catch (error) {
     res.send({ Error: error, isSuccess: false });
   }
 };
-
-
 
 const RemoveReview = async (req, res) => {
   try {
