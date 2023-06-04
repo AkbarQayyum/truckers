@@ -46,6 +46,7 @@ const registerUsers = async (req, res) => {
         registration: "0",
         range: "",
         driverId: data?._id,
+        date: new Date().toLocaleString(),
         isAvailable: true,
       };
       const re = await new AttendanceModal(obj);
