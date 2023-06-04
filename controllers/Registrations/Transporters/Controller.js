@@ -28,7 +28,7 @@ const register = async (req, res) => {
 
 const getalls = async (req, res) => {
   try {
-    const data = await Modals.find();
+    const data = await Modals.find().populate("userid");
     res.send({ data: data, isSuccess: true });
   } catch (error) {
     res.send({ Error: error, isSuccess: false });
@@ -58,9 +58,9 @@ const SearchVehicle = async (req, res) => {
         vehicle: req.body.vehicle,
         isAvailable: true,
       });
-const ob=JSON.parse(JSON.stringify(data))
+      const ob = JSON.parse(JSON.stringify(data));
       return res.send({
-        data: [ {...ob[0], driverId: tempobj[0]} ],
+        data: [{ ...ob[0], driverId: tempobj[0] }],
         isSuccess: true,
         message: "ok.!",
       });
