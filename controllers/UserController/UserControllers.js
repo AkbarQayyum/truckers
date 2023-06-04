@@ -1,5 +1,17 @@
 const { response } = require("express");
 const Users = require("../../models/UserModal");
+const Builty = require("../../models/Builty/BuiltyModal");
+const Transporters = require("../../models/Registrations/Transporters/Modal");
+const Vehicles = require("../../models/SellVehicles/Modal");
+const Beopari = require("../../models/Registrations/Beopari/Modal");
+const Drivers = require("../../models/Registrations/Drivers/Modal");
+const Hotals = require("../../models/Registrations/Hotals/Modal");
+const Mechanic = require("../../models/Registrations/Mechanic/Modal");
+const ServiceStation = require("../../models/Registrations/ServiceStations/Modal");
+const SpareParts = require("../../models/Registrations/SparePartsShop/Modal");
+const VehiclesRegister = require("../../models/Registrations/Vehicle/Modal");
+const Labor = require("../../models/Labor/LaborModal");
+
 const jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
 const sgMail = require("@sendgrid/mail");
@@ -161,6 +173,47 @@ const removeUser = async (req, res) => {
     });
   }
 };
+const GetDashboardData = async (req, res) => {
+  try {
+    let user = Users.find();
+    let vehi = VehiclesRegister.find();
+    let spare = SpareParts.find();
+    let serv = ServiceStation.find();
+    let mech = Mechanic.find();
+    let hota = Hotals.find();
+    let driver = Drivers.find();
+    let beo = Beopari.find();
+    let sell = Vehicles.find();
+    let trans = Transporters.find();
+    let buil = Vehicles.find();
+    let lab = Labor.find();
+    res.send({
+      cardsData: {
+        user: user?.length,
+        builty: buil?.length,
+        transporter: trans?.length,
+        vehicle: sell?.length,
+      },
+      ChartData: {
+        vehicle: vehi?.length,
+        sparepart: spare?.length,
+        service: serv?.length,
+        mechanic: mech?.length,
+        hotal: hota?.length,
+        driver: driver?.length,
+        beopari: beo?.length,
+        transporter: trans?.length,
+        labor: lab?.length,
+      },
+      isSuccess: true,
+      message: "Data Fetched",
+    });
+  } catch (error) {
+    res.send({
+      Error: error,
+    });
+  }
+};
 
 module.exports = {
   registerUsers,
@@ -169,4 +222,5 @@ module.exports = {
   removeUser,
   updateUser,
   VerifyEmails,
+  GetDashboardData,
 };

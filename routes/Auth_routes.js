@@ -8,5 +8,6 @@ router.post("/register", userControllers.registerUsers);
 router.get("/verifyemail/:id", userControllers.VerifyEmails);
 router.put("/update", userControllers.updateUser);
 router.delete("/delete/:id", userControllers.removeUser);
+router.get("/dashboard", userControllers.GetDashboardData);
 
 module.exports = router;
